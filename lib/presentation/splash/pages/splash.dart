@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/common/helper/navigation/app_navigation.dart';
 import 'package:movie_app/core/configs/assets/app_image.dart';
 import 'package:movie_app/presentation/splash/bloc/splash_cubit.dart';
 import 'package:movie_app/presentation/splash/bloc/splash_state.dart';
 
-class splashPage extends StatelessWidget {
-  const splashPage({super.key});
+class SplashPage extends StatelessWidget {
+  const SplashPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocListener<SplashCubit, SplashState>(
         listener: (context, state) {
-          if (state is Unauthenticated) {}
+          if (state is Unauthenticated) {
+            AppNavigator.pushReplacement(context, widget)
+          }
           if (state is Authenticated) {}
         },
         child: Stack(
