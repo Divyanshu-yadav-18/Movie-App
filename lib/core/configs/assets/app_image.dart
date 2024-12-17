@@ -1,5 +1,5 @@
 class AppImage {
   static const basePath = 'assets/images/';
 
-  static const splashBackground = '${basePath}splash-bj.png';
+  static const splashBackground = '${basePath}splash-bg.jpg';
 }
