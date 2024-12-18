@@ -12,7 +12,7 @@ class SignInPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        minimum: EdgeInsets.only(
+        minimum: const EdgeInsets.only(
           top: 100,
           right: 16,
           left: 16,
@@ -82,7 +82,7 @@ class SignInPage extends StatelessWidget {
               ..onTap = () {
                 AppNavigator.push(
                   context,
-                  const SignupPage(),
+                  const SignUpPage(),
                 );
               },
           ),
