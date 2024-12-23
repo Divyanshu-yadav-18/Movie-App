@@ -15,7 +15,3 @@ class AuthRepositoryImpl extends AuthRepository {
 var data = AuthRepositoryImpl(
   authApiService: AuthApiServiceImpl(),
 );
-
-var data2 = AuthRepositoryImpl(
-  authApiService: AuthFirebaseServiceImpl(),
-);

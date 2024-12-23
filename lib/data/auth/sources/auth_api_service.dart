@@ -5,7 +5,12 @@ import 'package:movie_app/core/network/dio_client.dart';
 import 'package:movie_app/data/auth/models/signup_req_param.dart';
 import 'package:movie_app/service_locator.dart';
 
-class AuthApiServiceImpl {
+abstract class AuthApiService {
+  Future<Either> signup(SignupReqParam params);
+}
+
+class AuthApiServiceImpl extends AuthApiService {
+  @override
   Future<Either> signup(SignupReqParam params) async {
     try {
       var response = await sl<DioClient>().post(
@@ -16,12 +21,5 @@ class AuthApiServiceImpl {
     } on DioException catch (e) {
       return Left(e.response!.data['message']);
     }
-  }
-}
-
-class AuthFirebaseServiceImpl {
-  Future<Either> signup(SignupReqParam params) {
-    // TODO: implement signup
-    throw UnimplementedError();
   }
 }
