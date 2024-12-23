@@ -11,3 +11,11 @@ class AuthRepositoryImpl extends AuthRepository {
     return await authApiService.signup(params);
   }
 }
+
+var data = AuthRepositoryImpl(
+  authApiService: AuthApiServiceImpl(),
+);
+
+var data2 = AuthRepositoryImpl(
+  authApiService: AuthFirebaseServiceImpl(),
+);
