@@ -2,11 +2,18 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/common/helper/navigation/app_navigation.dart';
 import 'package:movie_app/core/configs/theme/app_color.dart';
+import 'package:movie_app/data/auth/models/signup_req_param.dart';
+import 'package:movie_app/data/auth/reposetories/auth.dart';
+import 'package:movie_app/data/auth/sources/auth_api_service.dart';
+import 'package:movie_app/domain/auth/usecases/signup.dart';
 import 'package:movie_app/presentation/auth/pages/signin_page.dart';
 import 'package:reactive_button/reactive_button.dart';
 
 class SignUpPage extends StatelessWidget {
-  const SignUpPage({super.key});
+  SignUpPage({super.key});
+
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -47,14 +54,16 @@ class SignUpPage extends StatelessWidget {
   }
 
   Widget _emailField() {
-    return const TextField(
-      decoration: InputDecoration(hintText: 'Email'),
+    return TextField(
+      controller: _emailController,
+      decoration: const InputDecoration(hintText: 'Email'),
     );
   }
 
   Widget _pwField() {
-    return const TextField(
-      decoration: InputDecoration(hintText: 'Password'),
+    return TextField(
+      controller: _passwordController,
+      decoration: const InputDecoration(hintText: 'Password'),
     );
   }
 
@@ -62,7 +71,17 @@ class SignUpPage extends StatelessWidget {
     return ReactiveButton(
       title: 'Sign Up',
       activeColor: AppColor.primary,
-      onPressed: () async {},
+      onPressed: () async {
+        SignUpUseCase(
+                authRepository:
+                    AuthRepositoryImpl(authApiService: AuthApiServiceImpl()))
+            .call(
+          params: SignupReqParam(
+            email: _emailController.text,
+            password: _emailController.text,
+          ),
+        );
+      },
       onSuccess: () {},
       onFailure: (error) {},
     );

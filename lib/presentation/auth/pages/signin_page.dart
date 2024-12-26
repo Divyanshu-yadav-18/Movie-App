@@ -82,7 +82,7 @@ class SignInPage extends StatelessWidget {
               ..onTap = () {
                 AppNavigator.push(
                   context,
-                  const SignUpPage(),
+                  SignUpPage(),
                 );
               },
           ),
