@@ -7,6 +7,7 @@ import 'package:movie_app/data/auth/reposetories/auth.dart';
 import 'package:movie_app/data/auth/sources/auth_api_service.dart';
 import 'package:movie_app/domain/auth/usecases/signup.dart';
 import 'package:movie_app/presentation/auth/pages/signin_page.dart';
+import 'package:movie_app/service_locator.dart';
 import 'package:reactive_button/reactive_button.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -72,13 +73,10 @@ class SignUpPage extends StatelessWidget {
       title: 'Sign Up',
       activeColor: AppColor.primary,
       onPressed: () async {
-        SignUpUseCase(
-                authRepository:
-                    AuthRepositoryImpl(authApiService: AuthApiServiceImpl()))
-            .call(
+        sl<SignUpUseCase>().call(
           params: SignupReqParam(
             email: _emailController.text,
-            password: _emailController.text,
+            password: _passwordController.text,
           ),
         );
       },
