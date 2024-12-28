@@ -6,6 +6,7 @@ import 'package:movie_app/core/configs/theme/app_color.dart';
 import 'package:movie_app/data/auth/models/signin_req_param.dart';
 import 'package:movie_app/domain/auth/usecases/signin.dart';
 import 'package:movie_app/presentation/auth/pages/signup_page.dart';
+import 'package:movie_app/presentation/home/pages/home_page.dart';
 import 'package:movie_app/service_locator.dart';
 import 'package:reactive_button/reactive_button.dart';
 
@@ -75,7 +76,9 @@ class SignInPage extends StatelessWidget {
           params: SignInReqParam(
               email: _emailController.text,
               password: _passwordController.text)),
-      onSuccess: () {},
+      onSuccess: () {
+        AppNavigator.pushAndRemove(context, const HomePage());
+      },
       onFailure: (error) {
         DisplayMessage.errorMessage(
           error,

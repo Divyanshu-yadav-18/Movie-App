@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:movie_app/common/helper/message/display_message.dart';
 import 'package:movie_app/common/helper/navigation/app_navigation.dart';
 import 'package:movie_app/core/configs/theme/app_color.dart';
 import 'package:movie_app/data/auth/models/signup_req_param.dart';
@@ -33,7 +34,7 @@ class SignUpPage extends StatelessWidget {
             const SizedBox(height: 10),
             _pwField(),
             const SizedBox(height: 60),
-            _signupButton(),
+            _signupButton(context),
             const SizedBox(height: 20),
             _signUpText(context),
           ],
@@ -66,7 +67,7 @@ class SignUpPage extends StatelessWidget {
     );
   }
 
-  Widget _signupButton() {
+  Widget _signupButton(BuildContext context) {
     return ReactiveButton(
       title: 'Sign Up',
       activeColor: AppColor.primary,
@@ -79,7 +80,9 @@ class SignUpPage extends StatelessWidget {
         );
       },
       onSuccess: () {},
-      onFailure: (error) {},
+      onFailure: (error) {
+        DisplayMessage.errorMessage(error, context);
+      },
     );
   }
 
@@ -97,7 +100,7 @@ class SignUpPage extends StatelessWidget {
               ..onTap = () {
                 AppNavigator.push(
                   context,
-                  const SignInPage(),
+                  SignInPage(),
                 );
               },
           ),
