@@ -9,4 +9,10 @@ class AuthRepositoryImpl extends AuthRepository {
   Future<Either> signup(SignupReqParam params) async {
     return await sl<AuthApiService>().signup(params);
   }
+
+  @override
+  Future<Either> signin(SignupReqParam params) {
+    // TODO: implement signin
+    throw UnimplementedError();
+  }
 }

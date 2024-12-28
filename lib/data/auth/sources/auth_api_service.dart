@@ -7,6 +7,7 @@ import 'package:movie_app/service_locator.dart';
 
 abstract class AuthApiService {
   Future<Either> signup(SignupReqParam params);
+  Future<Either> signin(SignupReqParam params);
 }
 
 class AuthApiServiceImpl extends AuthApiService {
@@ -15,6 +16,19 @@ class AuthApiServiceImpl extends AuthApiService {
     try {
       var response = await sl<DioClient>().post(
         ApiUrl.signup,
+        data: params.toMap(),
+      );
+      return right(response.data);
+    } on DioException catch (e) {
+      return Left(e.response!.data['message']);
+    }
+  }
+
+  @override
+  Future<Either> signin(SignupReqParam params) async {
+    try {
+      var response = await sl<DioClient>().post(
+        ApiUrl.signin,
         data: params.toMap(),
       );
       return right(response.data);
