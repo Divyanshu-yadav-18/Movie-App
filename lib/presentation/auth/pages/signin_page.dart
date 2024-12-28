@@ -1,12 +1,19 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:movie_app/common/helper/message/display_message.dart';
 import 'package:movie_app/common/helper/navigation/app_navigation.dart';
 import 'package:movie_app/core/configs/theme/app_color.dart';
+import 'package:movie_app/data/auth/models/signin_req_param.dart';
+import 'package:movie_app/domain/auth/usecases/signin.dart';
 import 'package:movie_app/presentation/auth/pages/signup_page.dart';
+import 'package:movie_app/service_locator.dart';
 import 'package:reactive_button/reactive_button.dart';
 
 class SignInPage extends StatelessWidget {
-  const SignInPage({super.key});
+  SignInPage({super.key});
+
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +34,7 @@ class SignInPage extends StatelessWidget {
             const SizedBox(height: 10),
             _pwField(),
             const SizedBox(height: 60),
-            _signInButton(),
+            _signInButton(context),
             const SizedBox(height: 20),
             _signUpText(context),
           ],
@@ -47,24 +54,34 @@ class SignInPage extends StatelessWidget {
   }
 
   Widget _emailField() {
-    return const TextField(
-      decoration: InputDecoration(hintText: 'Email'),
+    return TextField(
+      controller: _emailController,
+      decoration: const InputDecoration(hintText: 'Email'),
     );
   }
 
   Widget _pwField() {
-    return const TextField(
-      decoration: InputDecoration(hintText: 'Password'),
+    return TextField(
+      controller: _passwordController,
+      decoration: const InputDecoration(hintText: 'Password'),
     );
   }
 
-  Widget _signInButton() {
+  Widget _signInButton(BuildContext context) {
     return ReactiveButton(
       title: 'Sign In',
       activeColor: AppColor.primary,
-      onPressed: () async {},
+      onPressed: () async => sl<SignInUseCase>().call(
+          params: SignInReqParam(
+              email: _emailController.text,
+              password: _passwordController.text)),
       onSuccess: () {},
-      onFailure: (error) {},
+      onFailure: (error) {
+        DisplayMessage.errorMessage(
+          error,
+          context,
+        );
+      },
     );
   }
 
