@@ -12,7 +12,7 @@ final sl = GetIt.instance;
 void setupServiceLocator() {
   sl.registerSingleton<DioClient>(DioClient());
 
-  sl.registerSingleton<AuthApiService>(AuthApiServiceImpl());
+  sl.registerSingleton<AuthService>(AuthApiServiceImpl());
 
   sl.registerSingleton<AuthRepository>(AuthRepositoryImpl());
 

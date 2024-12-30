@@ -9,7 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AuthRepositoryImpl extends AuthRepository {
   @override
   Future<Either> signup(SignupReqParam params) async {
-    var data = await sl<AuthApiService>().signup(params);
+    var data = await sl<AuthService>().signup(params);
     return data.fold((error) {
       return Left(error);
     }, (data) async {
@@ -22,7 +22,7 @@ class AuthRepositoryImpl extends AuthRepository {
 
   @override
   Future<Either> signin(SignInReqParam params) async {
-    var data = await sl<AuthApiService>().signin(params);
+    var data = await sl<AuthService>().signin(params);
     return data.fold((error) {
       return Left(error);
     }, (data) async {
