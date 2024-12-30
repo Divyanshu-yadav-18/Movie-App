@@ -34,7 +34,7 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<bool> loggedIn() async {
+  Future<bool> isLoggedIn() async {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
     var token = sharedPreferences.getString('token');

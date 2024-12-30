@@ -6,6 +6,7 @@ import 'package:movie_app/core/configs/theme/app_color.dart';
 import 'package:movie_app/data/auth/models/signup_req_param.dart';
 import 'package:movie_app/domain/auth/usecases/signup.dart';
 import 'package:movie_app/presentation/auth/pages/signin_page.dart';
+import 'package:movie_app/presentation/home/pages/home_page.dart';
 import 'package:movie_app/service_locator.dart';
 import 'package:reactive_button/reactive_button.dart';
 
@@ -79,7 +80,9 @@ class SignUpPage extends StatelessWidget {
           ),
         );
       },
-      onSuccess: () {},
+      onSuccess: () {
+        AppNavigator.pushAndRemove(context, const HomePage());
+      },
       onFailure: (error) {
         DisplayMessage.errorMessage(error, context);
       },
