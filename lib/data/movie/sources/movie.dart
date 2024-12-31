@@ -13,7 +13,7 @@ class MovieServiceImpl extends MovieService {
   Future<Either> getTrendingMovies() async {
     try {
       var response = await sl<DioClient>().get(
-        ApiUrl.signup,
+        ApiUrl.trendingMovies,
       );
       return right(response.data);
     } on DioException catch (e) {
