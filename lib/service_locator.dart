@@ -9,6 +9,7 @@ import 'package:movie_app/domain/auth/usecases/is_logged_in.dart';
 import 'package:movie_app/domain/auth/usecases/signin.dart';
 import 'package:movie_app/domain/auth/usecases/signup.dart';
 import 'package:movie_app/domain/movie/repositories/movie.dart';
+import 'package:movie_app/domain/movie/usecases/get_trending_movies.dart';
 
 final sl = GetIt.instance;
 
@@ -25,4 +26,5 @@ void setupServiceLocator() {
   sl.registerSingleton<SignInUseCase>(SignInUseCase());
 
   sl.registerSingleton<IsLoggedInUseCase>(IsLoggedInUseCase());
+  sl.registerSingleton<GetTrendingMoviesUseCase>(GetTrendingMoviesUseCase());
 }
