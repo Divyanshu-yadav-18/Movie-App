@@ -6,7 +6,7 @@ import 'package:movie_app/service_locator.dart';
 class NowPlayingCubit extends Cubit<NowPlayingState> {
   NowPlayingCubit() : super(NowPlayingMoviesLoading());
 
-  void getTrendingMovies() async {
+  void getNowPlayingMovies() async {
     var returnedData = await sl<GetNowTrendingMovies>().call();
     returnedData.fold((error) {
       emit(FailureLoadNowPlayingMovies(errorMessage: error));
