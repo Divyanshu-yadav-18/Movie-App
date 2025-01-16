@@ -14,6 +14,7 @@ import 'package:movie_app/domain/movie/repositories/movie.dart';
 import 'package:movie_app/domain/movie/usecases/get_now_trending_movies.dart';
 import 'package:movie_app/domain/movie/usecases/get_trending_movies.dart';
 import 'package:movie_app/domain/tv/repositories/tv.dart';
+import 'package:movie_app/domain/tv/usecases/get_popular_tv.dart';
 
 final sl = GetIt.instance;
 
@@ -34,4 +35,5 @@ void setupServiceLocator() {
   sl.registerSingleton<IsLoggedInUseCase>(IsLoggedInUseCase());
   sl.registerSingleton<GetTrendingMoviesUseCase>(GetTrendingMoviesUseCase());
   sl.registerSingleton<GetNowTrendingMovies>(GetNowTrendingMovies());
+  sl.registerSingleton<GetPopularTvUseCase>(GetPopularTvUseCase());
 }
