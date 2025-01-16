@@ -3,11 +3,11 @@ import 'package:movie_app/common/helper/navigation/app_navigation.dart';
 import 'package:movie_app/core/configs/assets/app_image.dart';
 import 'package:movie_app/core/configs/theme/app_color.dart';
 import 'package:movie_app/domain/movie/entites/movie.dart';
-import 'package:movie_app/presentation/watch/pages/movie_watch.dart';
+import 'package:movie_app/domain/tv/entities/tv.dart';
 
-class MovieCard extends StatelessWidget {
-  final MovieEntity movieEntity;
-  const MovieCard({required this.movieEntity, super.key});
+class TVCard extends StatelessWidget {
+  final TVEntity tvEntity;
+  const TVCard({required this.tvEntity, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class MovieCard extends StatelessWidget {
         AppNavigator.push(
             context,
             MovieWatchPage(
-              movieEntity: movieEntity,
+              tvEntity: tvEntity,
             ));
       },
       child: Container(
@@ -35,7 +35,7 @@ class MovieCard extends StatelessWidget {
                     image: DecorationImage(
                         fit: BoxFit.fill,
                         image: NetworkImage(AppImage.movieImageBasePath +
-                            movieEntity.posterPath!)),
+                            tvEntity.posterPath!)),
                     borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(8),
                         topRight: Radius.circular(8))),
@@ -49,7 +49,7 @@ class MovieCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      movieEntity.title!,
+                      tvEntity.name!,
                       style: const TextStyle(
                           fontSize: 16,
                           overflow: TextOverflow.ellipsis,
@@ -64,7 +64,7 @@ class MovieCard extends StatelessWidget {
                           color: Colors.amber,
                         ),
                         Text(
-                          ' ${movieEntity.voteAverage!.toStringAsFixed(1)}',
+                          ' ${tvEntity.voteAverage!.toStringAsFixed(1)}',
                           style: const TextStyle(fontSize: 10),
                         )
                       ],

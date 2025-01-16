@@ -6,7 +6,7 @@ import 'package:movie_app/service_locator.dart';
 class PopularTVCubit extends Cubit<PopularTVState> {
   PopularTVCubit() : super(PopularTVLoading());
 
-  void getPopularTVMovies() async {
+  void getPopularTV() async {
     var returnedData = await sl<GetPopularTvUseCase>().call();
     returnedData.fold((error) {
       emit(FailureLoadedPopularTV(errorMessage: error));

@@ -5,8 +5,8 @@ abstract class PopularTVState {}
 class PopularTVLoading extends PopularTVState {}
 
 class PopularTVLoaded extends PopularTVState {
-  final List<TVEntity> movies;
-  PopularTVLoaded({required this.movies});
+  final List<TVEntity> tv;
+  PopularTVLoaded({required this.tv});
 }
 
 class FailureLoadedPopularTV extends PopularTVState {

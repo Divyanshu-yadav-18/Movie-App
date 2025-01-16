@@ -23,7 +23,8 @@ class HomePage extends StatelessWidget {
             CategoryText(title: "Trending "),
             TrendingMovies(),
             CategoryText(title: "Now Playing "),
-            NowPlayingMovies()
+            NowPlayingMovies(),
+            CategoryText(title: "Popular TV  "),
           ],
         ),
       ),
