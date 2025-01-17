@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/common/widgets/movie/movie_card.dart';
 import 'package:movie_app/common/widgets/tv/tv_card.dart';
-import 'package:movie_app/presentation/home/block/now_playing_cubit.dart';
-import 'package:movie_app/presentation/home/block/now_playing_state.dart';
 import 'package:movie_app/presentation/home/block/popular_tv_cubit.dart';
 import 'package:movie_app/presentation/home/block/popular_tv_state.dart';
 
