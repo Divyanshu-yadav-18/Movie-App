@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:movie_app/common/widgets/appbar/appbar.dart';
 import 'package:movie_app/domain/movie/entites/movie.dart';
+import 'package:movie_app/presentation/watch/widget/now_playing_movies.dart';
 import 'package:movie_app/presentation/watch/widget/video_overview.dart';
 import 'package:movie_app/presentation/watch/widget/video_player.dart';
 import 'package:movie_app/presentation/watch/widget/video_release_date.dart';
@@ -40,7 +41,14 @@ class MovieWatchPage extends StatelessWidget {
                 )
               ],
             ),
-            VideoOverview(overview: movieEntity.overview!)
+            const SizedBox(
+              height: 16,
+            ),
+            VideoOverview(overview: movieEntity.overview!),
+            const SizedBox(
+              height: 16,
+            ),
+            RecommendationMovie(movieId: movieEntity.id!)
           ],
         ),
       ),

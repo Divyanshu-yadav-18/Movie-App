@@ -4,9 +4,9 @@ import 'package:movie_app/common/widgets/movie/movie_card.dart';
 import 'package:movie_app/presentation/watch/bloc/recommendation_movie_cubit.dart';
 import 'package:movie_app/presentation/watch/bloc/recommendation_movie_state.dart';
 
-class NowPlayingMovies extends StatelessWidget {
+class RecommendationMovie extends StatelessWidget {
   final int movieId;
-  const NowPlayingMovies({required this.movieId, super.key});
+  const RecommendationMovie({required this.movieId, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,16 +21,28 @@ class NowPlayingMovies extends StatelessWidget {
             );
           }
           if (state is RecommendationMoviesLoaded) {
-            return SizedBox(
-              height: 300,
-              child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return MovieCard(movieEntity: state.movie[index]);
-                  },
-                  separatorBuilder: (context, index) =>
-                      const SizedBox(width: 10),
-                  itemCount: state.movie.length),
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "Recommendation",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+                SizedBox(
+                  height: 300,
+                  child: ListView.separated(
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return MovieCard(movieEntity: state.movie[index]);
+                      },
+                      separatorBuilder: (context, index) =>
+                          const SizedBox(width: 10),
+                      itemCount: state.movie.length),
+                ),
+              ],
             );
           }
           if (state is FailureLoadRecommendationMovies) {
