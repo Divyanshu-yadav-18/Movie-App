@@ -39,5 +39,6 @@ void setupServiceLocator() {
   sl.registerSingleton<GetNowTrendingMovies>(GetNowTrendingMovies());
   sl.registerSingleton<GetPopularTvUseCase>(GetPopularTvUseCase());
   sl.registerSingleton<GetMovieTrailerUseCase>(GetMovieTrailerUseCase());
-  sl.registerSingleton<GetRecommendationMovies>(GetRecommendationMovies());
+  sl.registerSingleton<GetRecommendationMoviesUseCase>(
+      GetRecommendationMoviesUseCase());
 }
