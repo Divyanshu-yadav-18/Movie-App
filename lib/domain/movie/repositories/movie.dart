@@ -5,4 +5,5 @@ abstract class MovieRepository {
   Future<Either> getNowPlayingMovies();
   Future<Either> getMoviesTrailer(int movieId);
   Future<Either> getRecommendationMovies(int movieId);
+  Future<Either> getSimilarMovies(int movieId);
 }
