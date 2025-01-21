@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/common/helper/navigation/app_navigation.dart';
 import 'package:movie_app/core/configs/assets/app_image.dart';
 import 'package:movie_app/core/configs/theme/app_color.dart';
-import 'package:movie_app/domain/movie/entites/movie.dart';
 import 'package:movie_app/domain/tv/entities/tv.dart';
+import 'package:movie_app/presentation/watch/pages/tv_watch.dart';
 
 class TVCard extends StatelessWidget {
   final TVEntity tvEntity;
@@ -15,7 +15,7 @@ class TVCard extends StatelessWidget {
       onTap: () {
         AppNavigator.push(
             context,
-            MovieWatchPage(
+            TvWatchPage(
               tvEntity: tvEntity,
             ));
       },
