@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/common/widgets/appbar/appbar.dart';
 import 'package:movie_app/domain/tv/entities/tv.dart';
+import 'package:movie_app/presentation/watch/widget/movie_keywords.dart';
 import 'package:movie_app/presentation/watch/widget/recommendation_tvs.dart';
 import 'package:movie_app/presentation/watch/widget/similar_tv.dart';
 import 'package:movie_app/presentation/watch/widget/video_overview.dart';
@@ -28,6 +29,10 @@ class TvWatchPage extends StatelessWidget {
               height: 16,
             ),
             VideoTitle(title: tvEntity.name!),
+            const SizedBox(
+              height: 16,
+            ),
+            TVKeywords(tvId: tvEntity.id!),
             const SizedBox(
               height: 16,
             ),
