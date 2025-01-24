@@ -9,13 +9,12 @@ class SearchFeild extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: context.read<SearchCubit>().textEditingController,
       onChanged: (value) {
-        if (value.isNotEmpty) {
-          context.read<SearchCubit>().search(
-                value,
-                context.read<SelectableOptionCubit>().state,
-              );
-        }
+        context.read<SearchCubit>().search(
+              value,
+              context.read<SelectableOptionCubit>().state,
+            );
       },
       decoration: const InputDecoration(hintText: "Search..."),
     );
