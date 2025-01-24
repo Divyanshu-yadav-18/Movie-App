@@ -34,7 +34,7 @@ class SearchOptions extends StatelessWidget {
               isSelectable:
                   context.read<SelectableOptionCubit>().state == SearchType.tv,
               onTap: () {
-                context.read<SelectableOptionCubit>().selectMovie();
+                context.read<SelectableOptionCubit>().selectTV();
                 context.read<SearchCubit>().search(
                       context.read<SearchCubit>().textEditingController.text,
                       context.read<SelectableOptionCubit>().state,
