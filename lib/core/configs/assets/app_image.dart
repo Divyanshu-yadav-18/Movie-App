@@ -4,4 +4,7 @@ class AppImage {
   static const movieImageBasePath = 'https://image.tmdb.org/t/p/w500';
 
   static const splashBackground = '${basePath}splash-bg.jpg';
+
+  static const defaultImage =
+      'https://coffective.com/wp-content/uploads/2018/06/default-featured-image.png.jpg';
 }

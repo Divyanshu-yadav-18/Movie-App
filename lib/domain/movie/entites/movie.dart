@@ -1,3 +1,5 @@
+import 'package:movie_app/core/configs/assets/app_image.dart';
+
 class MovieEntity {
   MovieEntity({
     required this.backdropPath,
@@ -32,4 +34,10 @@ class MovieEntity {
   final bool? video;
   final double? voteAverage;
   final int? voteCount;
+
+  String providePosterPath() {
+    return posterPath != null
+        ? AppImage.movieImageBasePath + posterPath!
+        : AppImage.defaultImage;
+  }
 }

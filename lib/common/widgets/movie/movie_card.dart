@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/common/helper/navigation/app_navigation.dart';
-import 'package:movie_app/core/configs/assets/app_image.dart';
 import 'package:movie_app/core/configs/theme/app_color.dart';
 import 'package:movie_app/domain/movie/entites/movie.dart';
 import 'package:movie_app/presentation/watch/pages/movie_watch.dart';
@@ -33,9 +32,11 @@ class MovieCard extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: Colors.white,
                     image: DecorationImage(
-                        fit: BoxFit.fill,
-                        image: NetworkImage(AppImage.movieImageBasePath +
-                            movieEntity.posterPath!)),
+                      fit: BoxFit.fill,
+                      image: NetworkImage(
+                        movieEntity.providePosterPath(),
+                      ),
+                    ),
                     borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(8),
                         topRight: Radius.circular(8))),
