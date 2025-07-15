@@ -1,17 +1,14 @@
 class ApiUrl {
-  static const baseURL =
-      'https://netflix-backend-production-8413.up.railway.app/';
+  static const baseURL = 'https://api.themoviedb.org/3';
 
-  static const apiV = 'api/v1/';
+  static const trendingMovies = '/trending/movie/day';
+  static const nowPlayingMovies = '/movie/now_playing';
+  static const popularMovies = '/movie/popular';
+  static const movie = '/movie/';
+  static const search = '/search/movie';
 
-  static const signup = '${apiV}auth/signup';
-  static const signin = '${apiV}auth/signin';
+  static const popularTV = '/tv/popular';
+  static const tv = '/tv/'; //   /tv/{id}
 
-  static const trendingMovies = '${apiV}movie/trending';
-  static const nowPlayingMovies = '${apiV}movie/nowplaying';
-  static const popularTV = '${apiV}tv/popular';
-  static const movie = '${apiV}movie/';
-  static const tv = '${apiV}tv/';
-  static const search = '${apiV}search/';
   static const trailerBase = 'https://www.youtube.com/watch?v=';
 }
