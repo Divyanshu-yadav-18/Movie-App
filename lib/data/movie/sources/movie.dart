@@ -14,75 +14,79 @@ abstract class MovieService {
 }
 
 class MovieServiceImpl extends MovieService {
+  final Dio _dio = sl<DioClient>()
+      .dio; // make sure DioClient sets baseUrl='https://api.themoviedb.org/3'
+  final _headers = {
+    'Authorization': 'Bearer YOUR_READ_ACCESS_TOKEN',
+    'Content-Type': 'application/json'
+  };
+
   @override
-  Future<Either> getTrendingMovies() async {
+  Future<Either<String, List<dynamic>>> getTrendingMovies() async {
     try {
-      var response = await sl<DioClient>().get(
-        ApiUrl.trendingMovies,
-      );
-      return right(response.data);
+      final res = await _dio.get('/trending/movie/day',
+          options: Options(headers: _headers));
+      return right(res.data['results']); // 👈 TMDb nests array under "results"
     } on DioException catch (e) {
-      return Left(e.response!.data['message']);
+      return left(e.response?.data['status_message'] ?? e.message);
     }
   }
 
   @override
-  Future<Either> getNowPlayingMovies() async {
+  Future<Either<String, List<dynamic>>> getNowPlayingMovies() async {
     try {
-      var response = await sl<DioClient>().get(
-        ApiUrl.nowPlayingMovies,
-      );
-      return right(response.data);
+      final res = await _dio.get('/movie/now_playing',
+          options: Options(headers: _headers));
+      return right(res.data['results']);
     } on DioException catch (e) {
-      return Left(e.response!.data['message']);
+      return left(e.response?.data['status_message'] ?? e.message);
     }
   }
 
   @override
-  Future<Either> getMoviesTrailer(int movieId) async {
+  Future<Either<String, List<dynamic>>> getMoviesTrailer(int id) async {
     try {
-      var response = await sl<DioClient>().get(
-        '${ApiUrl.movie}$movieId/trailer',
-      );
-      return right(response.data);
+      final res = await _dio.get('/movie/$id/videos',
+          options: Options(headers: _headers));
+      return right(res.data['results']); // trailers & teasers are in this list
     } on DioException catch (e) {
-      return Left(e.response!.data['message']);
+      return left(e.response?.data['status_message'] ?? e.message);
     }
   }
 
   @override
-  Future<Either> getRecommendationMovies(int movieId) async {
+  Future<Either<String, List<dynamic>>> getRecommendationMovies(int id) async {
     try {
-      var response = await sl<DioClient>().get(
-        '${ApiUrl.movie}$movieId/recommendations',
-      );
-      return right(response.data);
+      final res = await _dio.get('/movie/$id/recommendations',
+          options: Options(headers: _headers));
+      return right(res.data['results']);
     } on DioException catch (e) {
-      return Left(e.response!.data['message']);
+      return left(e.response?.data['status_message'] ?? e.message);
     }
   }
 
   @override
-  Future<Either> getSimilarMovies(int movieId) async {
+  Future<Either<String, List<dynamic>>> getSimilarMovies(int id) async {
     try {
-      var response = await sl<DioClient>().get(
-        '${ApiUrl.movie}$movieId/similar',
-      );
-      return right(response.data);
+      final res = await _dio.get('/movie/$id/similar',
+          options: Options(headers: _headers));
+      return right(res.data['results']);
     } on DioException catch (e) {
-      return Left(e.response!.data['message']);
+      return left(e.response?.data['status_message'] ?? e.message);
     }
   }
 
   @override
-  Future<Either> searchMovie(String query) async {
+  Future<Either<String, List<dynamic>>> searchMovie(String query) async {
     try {
-      var response = await sl<DioClient>().get(
-        '${ApiUrl.search}movie/$query',
+      final res = await _dio.get(
+        '/search/movie',
+        queryParameters: {'query': query},
+        options: Options(headers: _headers),
       );
-      return right(response.data);
+      return right(res.data['results']);
     } on DioException catch (e) {
-      return Left(e.response!.data['message']);
+      return left(e.response?.data['status_message'] ?? e.message);
     }
   }
 }

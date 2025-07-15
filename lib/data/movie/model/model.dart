@@ -6,7 +6,6 @@ class MovieModel {
     required this.originalTitle,
     required this.overview,
     required this.posterPath,
-    required this.mediaType,
     required this.adult,
     required this.originalLanguage,
     required this.genreIds,
@@ -23,7 +22,6 @@ class MovieModel {
   final String? originalTitle;
   final String? overview;
   final String? posterPath;
-  final String? mediaType;
   final bool? adult;
   final String? originalLanguage;
   final List<int> genreIds;
@@ -41,7 +39,6 @@ class MovieModel {
       originalTitle: json["original_title"],
       overview: json["overview"],
       posterPath: json["poster_path"],
-      mediaType: json["media_type"],
       adult: json["adult"],
       originalLanguage: json["original_language"],
       genreIds: json["genre_ids"] == null
