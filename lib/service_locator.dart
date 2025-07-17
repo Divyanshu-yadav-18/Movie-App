@@ -1,3 +1,4 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:movie_app/core/network/dio_client.dart';
 import 'package:movie_app/data/auth/reposetories/auth.dart';
@@ -27,7 +28,12 @@ import 'package:movie_app/domain/tv/usecases/search_tv.dart';
 final sl = GetIt.instance;
 
 void setupServiceLocator() {
-  sl.registerSingleton<DioClient>(DioClient());
+  final token = dotenv.env['TMDB_BEARER'];
+  if (token == null) {
+    throw Exception('TMDB_BEARER not found in .env');
+  }
+
+  sl.registerSingleton<DioClient>(DioClient(token: token));
 
   sl.registerSingleton<AuthService>(AuthApiServiceImpl());
   sl.registerSingleton<MovieService>(MovieServiceImpl());

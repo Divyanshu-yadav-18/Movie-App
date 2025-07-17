@@ -1,20 +1,27 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:movie_app/core/constant/api_url.dart';
 
 import 'interceptors.dart';
 
 class DioClient {
   late final Dio _dio;
-  DioClient()
+  DioClient({required String token})
       : _dio = Dio(
           BaseOptions(
-              baseUrl: ApiUrl.baseURL,
-              headers: {'Content-Type': 'application/json; charset=UTF-8'},
-              responseType: ResponseType.json,
-              sendTimeout: const Duration(seconds: 10),
-              receiveTimeout: const Duration(seconds: 10)),
-        )..interceptors
-            .addAll([AuthorizationInterceptor(), LoggerInterceptor()]);
+            baseUrl: ApiUrl.baseURL,
+            headers: {
+              'Content-Type': 'application/json; charset=UTF-8',
+              // Optional: Add bearer token directly if not using SharedPrefs
+              'Authorization': 'Bearer $token',
+            },
+            responseType: ResponseType.json,
+            sendTimeout: const Duration(seconds: 10),
+            receiveTimeout: const Duration(seconds: 10),
+          ),
+        )..interceptors.addAll([
+            LoggerInterceptor(),
+          ]);
 
   // GET METHOD
   Future<Response> get(

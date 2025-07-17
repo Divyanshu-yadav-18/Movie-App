@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:movie_app/core/configs/theme/app_theme.dart';
 import 'package:movie_app/presentation/splash/bloc/splash_cubit.dart';
 import 'package:movie_app/presentation/splash/pages/splash.dart';
 import 'package:movie_app/service_locator.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load();
   setupServiceLocator();
   runApp(const MyApp());
 }

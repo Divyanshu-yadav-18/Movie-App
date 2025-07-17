@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -38,11 +39,14 @@ class AuthorizationInterceptor extends Interceptor {
   @override
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
-    handler.next(options);
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
     final token = sharedPreferences.getString('token');
-    options.headers['Authorization'] = "Bearer $token";
-    handler.next(options);
+
+    if (token != null) {
+      options.headers['Authorization'] = "Bearer $token";
+    }
+
+    handler.next(options); // only once
   }
 }
