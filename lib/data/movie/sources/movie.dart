@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:movie_app/core/constant/api_url.dart';
 import 'package:movie_app/core/network/dio_client.dart';
 import 'package:movie_app/service_locator.dart';
 
@@ -15,7 +14,7 @@ abstract class MovieService {
 
 class MovieServiceImpl extends MovieService {
   final Dio _dio = sl<DioClient>()
-      .dio; // make sure DioClient sets baseUrl='https://api.themoviedb.org/3'
+      .client; // make sure DioClient sets baseUrl='https://api.themoviedb.org/3'
   final _headers = {
     'Authorization': 'Bearer YOUR_READ_ACCESS_TOKEN',
     'Content-Type': 'application/json'

@@ -115,4 +115,7 @@ class DioClient {
       rethrow;
     }
   }
+
+  // At the end of DioClient class
+  Dio get client => _dio;
 }
