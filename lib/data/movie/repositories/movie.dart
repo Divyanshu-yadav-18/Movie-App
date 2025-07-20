@@ -15,7 +15,7 @@ class MovieRepositoryImpl extends MovieRepository {
     return returnedData.fold(
       (error) => Left(error),
       (data) {
-        var movies = List.from(data['results'])
+        var movies = List.from(data)
             .map((item) => MovieMapper.toEntity(MovieModel.fromJson(item)))
             .toList();
         return Right(movies);
@@ -30,7 +30,7 @@ class MovieRepositoryImpl extends MovieRepository {
     return returnedData.fold(
       (error) => Left(error),
       (data) {
-        var movies = List.from(data['results'])
+        var movies = List.from(data)
             .map((item) => MovieMapper.toEntity(MovieModel.fromJson(item)))
             .toList();
         return Right(movies);
@@ -45,7 +45,7 @@ class MovieRepositoryImpl extends MovieRepository {
     return returnedData.fold(
       (error) => Left(error),
       (data) {
-        var trailers = List.from(data['results'])
+        var trailers = List.from(data)
             .map((item) => TrailerMapper.toEntity(TrailersModel.fromJson(item)))
             .toList();
         return Right(trailers);
@@ -61,7 +61,7 @@ class MovieRepositoryImpl extends MovieRepository {
     return returnedData.fold(
       (error) => Left(error),
       (data) {
-        var movies = List.from(data['results'])
+        var movies = List.from(data)
             .map((item) => MovieMapper.toEntity(MovieModel.fromJson(item)))
             .toList();
         return Right(movies);
@@ -76,7 +76,7 @@ class MovieRepositoryImpl extends MovieRepository {
     return returnedData.fold(
       (error) => Left(error),
       (data) {
-        var movies = List.from(data['results'])
+        var movies = List.from(data)
             .map((item) => MovieMapper.toEntity(MovieModel.fromJson(item)))
             .toList();
         return Right(movies);
@@ -91,7 +91,7 @@ class MovieRepositoryImpl extends MovieRepository {
     return returnedData.fold(
       (error) => Left(error),
       (data) {
-        var movies = List.from(data['results'])
+        var movies = List.from(data)
             .map((item) => MovieMapper.toEntity(MovieModel.fromJson(item)))
             .toList();
         return Right(movies);

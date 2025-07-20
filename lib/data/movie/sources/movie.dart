@@ -17,7 +17,7 @@ class MovieServiceImpl extends MovieService {
       .client; // make sure DioClient sets baseUrl='https://api.themoviedb.org/3'
   final _headers = {
     'Authorization':
-        'Bearer ${const String.fromEnvironment("TMDB_READ_TOKEN")}',
+        'Bearer ${const String.fromEnvironment("TMDB_READ_TOKEN", defaultValue: "dev-token-here")}',
     'Content-Type': 'application/json'
   };
 
