@@ -1,15 +1,16 @@
 class TrailersModel {
-  TrailersModel(
-      {required this.iso6391,
-      required this.iso31661,
-      required this.name,
-      required this.key,
-      required this.site,
-      required this.size,
-      required this.type,
-      required this.official,
-      required this.publishedAt,
-      required this.id});
+  TrailersModel({
+    required this.iso6391,
+    required this.iso31661,
+    required this.name,
+    required this.key,
+    required this.site,
+    required this.size,
+    required this.type,
+    required this.official,
+    required this.publishedAt,
+    required this.id,
+  });
 
   final String? iso6391;
   final String? iso31661;
@@ -24,15 +25,17 @@ class TrailersModel {
 
   factory TrailersModel.fromJson(Map<String, dynamic> json) {
     return TrailersModel(
-      iso6391: json["iso6391"],
-      iso31661: json["iso31661"],
+      iso6391: json["iso_639_1"],
+      iso31661: json["iso_3166_1"],
       name: json["name"],
       key: json["key"],
       site: json["site"],
       size: json["size"],
       type: json["type"],
       official: json["official"],
-      publishedAt: json["publishedAt"] ?? "",
+      publishedAt: json["published_at"] != null
+          ? DateTime.tryParse(json["published_at"])
+          : null,
       id: json["id"],
     );
   }

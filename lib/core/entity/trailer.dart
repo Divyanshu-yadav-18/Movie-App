@@ -1,15 +1,16 @@
 class TrailersEntity {
-  TrailersEntity(
-      {required this.iso6391,
-      required this.iso31661,
-      required this.name,
-      required this.key,
-      required this.site,
-      required this.size,
-      required this.type,
-      required this.official,
-      required this.publishedAt,
-      required this.id});
+  TrailersEntity({
+    required this.iso6391,
+    required this.iso31661,
+    required this.name,
+    required this.key,
+    required this.site,
+    required this.size,
+    required this.type,
+    required this.official,
+    required this.publishedAt,
+    required this.id,
+  });
 
   final String? iso6391;
   final String? iso31661;
