@@ -4,19 +4,20 @@ import 'package:movie_app/core/network/dio_client.dart';
 import 'package:movie_app/service_locator.dart';
 
 abstract class MovieService {
-  Future<Either> getTrendingMovies();
-  Future<Either> getNowPlayingMovies();
-  Future<Either> getMoviesTrailer(int movieId);
-  Future<Either> getRecommendationMovies(int movieId);
-  Future<Either> getSimilarMovies(int movieId);
-  Future<Either> searchMovie(String query);
+  Future<Either<String, List<dynamic>>> getTrendingMovies();
+  Future<Either<String, List<dynamic>>> getNowPlayingMovies();
+  Future<Either<String, List<dynamic>>> getMoviesTrailer(int movieId);
+  Future<Either<String, List<dynamic>>> getRecommendationMovies(int movieId);
+  Future<Either<String, List<dynamic>>> getSimilarMovies(int movieId);
+  Future<Either<String, List<dynamic>>> searchMovie(String query);
 }
 
 class MovieServiceImpl extends MovieService {
   final Dio _dio = sl<DioClient>()
       .client; // make sure DioClient sets baseUrl='https://api.themoviedb.org/3'
   final _headers = {
-    'Authorization': 'Bearer YOUR_READ_ACCESS_TOKEN',
+    'Authorization':
+        'Bearer ${const String.fromEnvironment("TMDB_READ_TOKEN")}',
     'Content-Type': 'application/json'
   };
 

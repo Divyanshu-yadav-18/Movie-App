@@ -8,7 +8,6 @@ class MovieEntity {
     required this.originalTitle,
     required this.overview,
     required this.posterPath,
-    required this.mediaType,
     required this.adult,
     required this.originalLanguage,
     required this.genreIds,
@@ -25,7 +24,6 @@ class MovieEntity {
   final String? originalTitle;
   final String? overview;
   final String? posterPath;
-  final String? mediaType;
   final bool? adult;
   final String? originalLanguage;
   final List<int> genreIds;

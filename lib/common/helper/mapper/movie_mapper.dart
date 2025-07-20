@@ -10,7 +10,6 @@ class MovieMapper {
       originalTitle: movie.originalTitle,
       overview: movie.overview,
       posterPath: movie.posterPath,
-      mediaType: movie.mediaType,
       adult: movie.adult,
       originalLanguage: movie.originalLanguage,
       genreIds: movie.genreIds,
