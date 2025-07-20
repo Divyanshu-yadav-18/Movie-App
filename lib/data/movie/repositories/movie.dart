@@ -13,11 +13,9 @@ class MovieRepositoryImpl extends MovieRepository {
     var returnedData = await sl<MovieService>().getTrendingMovies();
 
     return returnedData.fold(
-      (error) {
-        return Left(error);
-      },
+      (error) => Left(error),
       (data) {
-        var movies = List.from(data['content'])
+        var movies = List.from(data['results'])
             .map((item) => MovieMapper.toEntity(MovieModel.fromJson(item)))
             .toList();
         return Right(movies);
@@ -30,11 +28,9 @@ class MovieRepositoryImpl extends MovieRepository {
     var returnedData = await sl<MovieService>().getNowPlayingMovies();
 
     return returnedData.fold(
-      (error) {
-        return Left(error);
-      },
+      (error) => Left(error),
       (data) {
-        var movies = List.from(data['content'])
+        var movies = List.from(data['results'])
             .map((item) => MovieMapper.toEntity(MovieModel.fromJson(item)))
             .toList();
         return Right(movies);
@@ -45,13 +41,16 @@ class MovieRepositoryImpl extends MovieRepository {
   @override
   Future<Either> getMoviesTrailer(int movieId) async {
     var returnedData = await sl<MovieService>().getMoviesTrailer(movieId);
-    return returnedData.fold((error) {
-      return Left(error);
-    }, (data) {
-      var movies =
-          TrailerMapper.toEntity(TrailersModel.fromJson(data['trailer']));
-      return Right(movies);
-    });
+
+    return returnedData.fold(
+      (error) => Left(error),
+      (data) {
+        var trailers = List.from(data['results'])
+            .map((item) => TrailerMapper.toEntity(TrailersModel.fromJson(item)))
+            .toList();
+        return Right(trailers);
+      },
+    );
   }
 
   @override
@@ -60,11 +59,9 @@ class MovieRepositoryImpl extends MovieRepository {
         await sl<MovieService>().getRecommendationMovies(movieId);
 
     return returnedData.fold(
-      (error) {
-        return Left(error);
-      },
+      (error) => Left(error),
       (data) {
-        var movies = List.from(data['content'])
+        var movies = List.from(data['results'])
             .map((item) => MovieMapper.toEntity(MovieModel.fromJson(item)))
             .toList();
         return Right(movies);
@@ -77,11 +74,9 @@ class MovieRepositoryImpl extends MovieRepository {
     var returnedData = await sl<MovieService>().getSimilarMovies(movieId);
 
     return returnedData.fold(
-      (error) {
-        return Left(error);
-      },
+      (error) => Left(error),
       (data) {
-        var movies = List.from(data['content'])
+        var movies = List.from(data['results'])
             .map((item) => MovieMapper.toEntity(MovieModel.fromJson(item)))
             .toList();
         return Right(movies);
@@ -94,11 +89,9 @@ class MovieRepositoryImpl extends MovieRepository {
     var returnedData = await sl<MovieService>().searchMovie(query);
 
     return returnedData.fold(
-      (error) {
-        return Left(error);
-      },
+      (error) => Left(error),
       (data) {
-        var movies = List.from(data['content'])
+        var movies = List.from(data['results'])
             .map((item) => MovieMapper.toEntity(MovieModel.fromJson(item)))
             .toList();
         return Right(movies);
