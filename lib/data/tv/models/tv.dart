@@ -45,12 +45,12 @@ class TVModel {
       originalLanguage: json["original_language"],
       originalName: json["original_name"],
       overview: json["overview"],
-      popularity: json["popularity"],
+      popularity: (json["popularity"] as num?)?.toDouble(),
       posterPath: json["poster_path"],
       firstAirDate: DateTime.tryParse(json["first_air_date"] ?? ""),
       name: json["name"],
       voteAverage: double.tryParse(json["vote_average"].toString()),
-      voteCount: json["vote_count"],
+      voteCount: json["vote_count"] as int?,
     );
   }
 }
