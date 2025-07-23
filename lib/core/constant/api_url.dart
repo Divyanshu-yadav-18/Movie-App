@@ -11,4 +11,10 @@ class ApiUrl {
   static const tv = '/tv/'; //   /tv/{id}
 
   static const trailerBase = 'https://www.youtube.com/watch?v=';
+
+  //auth
+  static const String requestToken = "/authentication/token/new";
+  static const String validateTokenWithLogin =
+      "/authentication/token/validate_with_login";
+  static const String createSession = "/authentication/session/new";
 }
