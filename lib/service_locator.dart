@@ -7,7 +7,6 @@ import 'package:movie_app/data/movie/repositories/movie.dart';
 import 'package:movie_app/data/movie/sources/movie.dart';
 import 'package:movie_app/data/tv/repositories/tv.dart';
 import 'package:movie_app/data/tv/source/tv.dart';
-import 'package:movie_app/domain/auth/repositories/auth.dart';
 import 'package:movie_app/domain/auth/usecases/is_logged_in.dart';
 import 'package:movie_app/domain/auth/usecases/signin.dart';
 import 'package:movie_app/domain/auth/usecases/signup.dart';
@@ -39,7 +38,6 @@ void setupServiceLocator() {
   sl.registerSingleton<MovieService>(MovieServiceImpl());
   sl.registerSingleton<TVService>(TVApiServiceImpl());
 
-  sl.registerSingleton<AuthRepository>(AuthRepositoryImpl());
   sl.registerSingleton<MovieRepository>(MovieRepositoryImpl());
   sl.registerSingleton<TVRepository>(TVRepositoryImpl());
 
